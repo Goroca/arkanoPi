@@ -29,7 +29,6 @@
 //	which is hiding some of that to make life simple.
 
 // CLAVES PARA MUTEX
-// ATENCION: Valores a modificar por el alumno
 #define	KEYBOARD_KEY		1
 #define	SYSTEM_FLAGS_KEY	2
 #define	MATRIX_KEY			3
@@ -59,7 +58,6 @@
 #define GPIO_LED_DISPLAY_ROW_7	0
 
 // FLAGS FSM CONTROL DE SERPIENTE Y GESTION JUEGO
-// ATENCION: Valores a modificar por el alumno
 #define FLAG_MOV_ARRIBA 	0x01
 #define FLAG_MOV_ABAJO		0x02
 #define FLAG_MOV_DERECHA 	0x04
@@ -67,6 +65,8 @@
 #define FLAG_TIMER_JUEGO	0x10
 #define FLAG_BOTON 			0x20
 #define FLAG_FIN_JUEGO		0x40
+
+
 
 enum fsm_state {
 	WAIT_START,

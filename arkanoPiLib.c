@@ -382,8 +382,10 @@ void InicializaJuego(fsm_t* this) {
 	tipo_arkanoPi *p_arkanoPi;
 	p_arkanoPi = (tipo_arkanoPi*)(this->user_data);
 
-	// A completar por el alumno
-	// ...
+	piLock(SYSTEM_FLAGS_KEY);
+	flags &= ~FLAG_BOTON;
+	piUnlock(SYSTEM_FLAGS_KEY);
+
 
 }
 
