@@ -1,4 +1,4 @@
-#include "teclado_TL04.h"
+#include "tecladoMatricial.h"
 
 char tecladoTL04[4][4] = {
 	{'1', '2', '3', 'C'},

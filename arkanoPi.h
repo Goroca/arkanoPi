@@ -5,9 +5,9 @@
 #include "kbhit.h" // para poder detectar teclas pulsadas sin bloqueo y leer las teclas pulsadas
 #include "fsm.h"
 #include "tmr.h"
-#include "teclado_TL04.h"
 #include "arkanoPiLib.h"
 #include "ledDisplay.h"
+#include "tecladoMatricial.h"
 
 typedef struct {
 	tipo_arkanoPi arkanoPi;

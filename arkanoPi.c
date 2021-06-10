@@ -53,8 +53,9 @@ TipoLedDisplay led_display = {
 // como el thread de exploración del teclado del PC
 int ConfiguraInicializaSistema (TipoSistema *p_sistema) {
 	int result = 0;
-	// A completar por el alumno...
-	// ...
+
+	wiringPiSetupGpio();
+
 
 	// Lanzamos thread para exploracion del teclado convencional del PC
 	result = piThreadCreate (thread_explora_teclado_PC);

@@ -214,7 +214,7 @@ void ActualizaPosicionPala(tipo_pala *p_pala, enum t_direccion direccion) {
 				p_pala->x = p_pala->x + 1;
 			break;
 		case IZQUIERDA:
-			// Dejamos que la pala rebase parcialmente el límite del area de juego
+			// Dejamos que la pala rebase parcialmente el limite del area de juego
 			if( p_pala->x - 1 >= -2)
 					p_pala->x = p_pala->x - 1;
 			break;
@@ -323,8 +323,9 @@ int CalculaLadrillosRestantes(tipo_pantalla *p_ladrillos) {
 int CompruebaBotonPulsado (fsm_t* this) {
 	int result = 0;
 
-	// A completar por el alumno
-	// ...
+	piLock(SYSTEM_FLAGS_KEY);
+	result = (flags & FLAG_BOTON);
+	piUnlock(SYSTEM_FLAGS_KEY);
 
 	return result;
 }
@@ -332,8 +333,9 @@ int CompruebaBotonPulsado (fsm_t* this) {
 int CompruebaMovimientoIzquierda(fsm_t* this) {
 	int result = 0;
 
-	// A completar por el alumno
-	// ...
+	piLock(SYSTEM_FLAGS_KEY);
+	result = (flags & FLAG_MOV_IZQUIERDA);
+	piUnlock(SYSTEM_FLAGS_KEY);
 
 	return result;
 }
@@ -341,8 +343,9 @@ int CompruebaMovimientoIzquierda(fsm_t* this) {
 int CompruebaMovimientoDerecha(fsm_t* this) {
 	int result = 0;
 
-	// A completar por el alumno
-	// ...
+	piLock(SYSTEM_FLAGS_KEY);
+	result = (flags & FLAG_MOV_DERECHA);
+	piUnlock(SYSTEM_FLAGS_KEY);
 
 	return result;
 }
@@ -350,8 +353,9 @@ int CompruebaMovimientoDerecha(fsm_t* this) {
 int CompruebaTimeoutActualizacionJuego (fsm_t* this) {
 	int result = 0;
 
-	// A completar por el alumno
-	// ...
+	piLock(SYSTEM_FLAGS_KEY);
+	result = (flags & FLAG_TIMER_JUEGO);
+	piUnlock(SYSTEM_FLAGS_KEY);
 
 	return result;
 }
@@ -359,8 +363,9 @@ int CompruebaTimeoutActualizacionJuego (fsm_t* this) {
 int CompruebaFinalJuego(fsm_t* this) {
 	int result = 0;
 
-	// A completar por el alumno
-	// ...
+	piLock(SYSTEM_FLAGS_KEY);
+	result = (flags & FLAG_FIN_JUEGO);
+	piUnlock(SYSTEM_FLAGS_KEY);
 
 	return result;
 }
@@ -380,7 +385,6 @@ void InicializaJuego(fsm_t* this) {
 	// A completar por el alumno
 	// ...
 
-	//pseudoWiringPiEnableDisplay(1);
 }
 
 // void MuevePalaIzquierda (void): funcion encargada de ejecutar
@@ -395,8 +399,12 @@ void MuevePalaIzquierda (fsm_t* this) {
 	tipo_arkanoPi* p_arkanoPi;
 	p_arkanoPi = (tipo_arkanoPi*)(this->user_data);
 
-	// A completar por el alumno
-	// ...
+	piLock(SYSTEM_FLAGS_KEY);
+	flags &= ~FLAG_MOV_IZQUIERDA;
+	piUnlock(SYSTEM_FLAGS_KEY);
+
+	ActualizaPosicionPala(&p_arkanoPi->pala,IZQUIERDA );
+
 }
 
 // void MuevePalaDerecha (void): función similar a la anterior
@@ -406,8 +414,12 @@ void MuevePalaDerecha (fsm_t* this) {
 	tipo_arkanoPi* p_arkanoPi;
 	p_arkanoPi = (tipo_arkanoPi*)(this->user_data);
 
-	// A completar por el alumno
-	// ...
+	piLock(SYSTEM_FLAGS_KEY);
+	flags &= ~FLAG_MOV_DERECHA;
+	piUnlock(SYSTEM_FLAGS_KEY);
+
+	ActualizaPosicionPala(&p_arkanoPi->pala,DERECHA );
+
 }
 
 // void ActualizarJuego (void): función encargada de actualizar la
@@ -439,7 +451,6 @@ void FinalJuego (fsm_t* this) {
 	// A completar por el alumno
 	// ...
 
-	//pseudoWiringPiEnableDisplay(0);
 }
 
 //void ReseteaJuego (void): función encargada de llevar a cabo la
