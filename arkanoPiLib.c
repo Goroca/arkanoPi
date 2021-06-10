@@ -409,7 +409,7 @@ void MuevePalaIzquierda (fsm_t* this) {
 
 }
 
-// void MuevePalaDerecha (void): función similar a la anterior
+// void MuevePalaDerecha (void): funcion similar a la anterior
 // encargada del movimiento hacia la derecha.
 
 void MuevePalaDerecha (fsm_t* this) {
@@ -421,7 +421,6 @@ void MuevePalaDerecha (fsm_t* this) {
 	piUnlock(SYSTEM_FLAGS_KEY);
 
 	ActualizaPosicionPala(&p_arkanoPi->pala,DERECHA );
-
 }
 
 // void ActualizarJuego (void): función encargada de actualizar la

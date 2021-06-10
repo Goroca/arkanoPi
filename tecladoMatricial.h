@@ -10,8 +10,8 @@
 #define NUM_FILAS_TECLADO 		4
 
 // FLAGS FSM CONTROL DE EXCITACION TECLADO Y FSM GESTION TECLAS PULSADAS
-#define FLAG_TIMEOUT_COLUMNA_TECLADO  	0x01
-#define FLAG_TECLA_PULSADA 				0x02
+#define FLAG_TIMEOUT_COLUMNA_TECLADO  	0x80
+#define FLAG_TECLA_PULSADA 				0x100
 
 enum columns_values {
 	COLUMNA_1,
@@ -54,7 +54,7 @@ typedef struct {
 extern TipoTeclado teclado;
 extern fsm_trans_t fsm_trans_excitacion_columnas[];
 extern fsm_trans_t fsm_trans_deteccion_pulsaciones[];
-extern int flagsTeclado; // Flags generales de sistema (necesario para comunicacion inter-FMs)
+extern int flags; // Flags generales de sistema (necesario para comunicacion inter-FMs)
 
 //------------------------------------------------------
 // PROCEDIMIENTOS DE INICIALIZACION DE LOS OBJETOS ESPECIFICOS

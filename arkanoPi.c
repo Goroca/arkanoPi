@@ -123,21 +123,8 @@ int main() {
 
 	fsm_t *arkanoPi_fsm = fsm_new(WAIT_START, arkanoPi, &sistema);
 
-	fsm_trans_t columns[] =
-			{ { COLUMNA_1, CompruebaTimeoutColumna, COLUMNA_2,
-					ProcesaTeclaPulsada }, { COLUMNA_2, CompruebaTimeoutColumna,
-					COLUMNA_3, ProcesaTeclaPulsada }, { COLUMNA_3,
-					CompruebaTimeoutColumna, COLUMNA_4, ProcesaTeclaPulsada }, {
-					COLUMNA_4, CompruebaTimeoutColumna, COLUMNA_1,
-					ProcesaTeclaPulsada }, { -1,
-			NULL, -1, NULL }, };
-
-	fsm_trans_t keypad[] = { { TECLADO_ESPERA_TECLA, TECLADO_ESPERA_COLUMNA,
-			TECLADO_ESPERA_TECLA, TECLADO_ESPERA_COLUMNA },
-			{ -1, NULL, -1, NULL }, };
-
-	fsm_t *columns_fsm = fsm_new(COLUMNA_1, columns, &teclado);
-	fsm_t *keypad_fsm = fsm_new(TECLADO_ESPERA_TECLA, keypad, &teclado);
+	fsm_t *columns_fsm = fsm_new(TECLADO_ESPERA_COLUMNA, fsm_trans_excitacion_columnas, &teclado);
+	fsm_t *keypad_fsm = fsm_new(TECLADO_ESPERA_TECLA, fsm_trans_deteccion_pulsaciones, &teclado);
 
 	next = millis();
 	while (1) {
@@ -153,4 +140,6 @@ int main() {
 	}
 
 	fsm_destroy(arkanoPi_fsm);
+	fsm_destroy(columns_fsm);
+	fsm_destroy(keypad_fsm);
 }
